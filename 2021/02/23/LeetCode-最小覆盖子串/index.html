@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="##题目给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。 示例： 12345输入: S &#x3D; “ADOBECODEBANC”, T &#x3D; “ABC”输出: “BANC”说明：如果 S 中不存这样的子串，则返回空字符串 “”。如果 S 中存在这样的子串，我们保证它是唯一的答案。">
+  <meta name="description" content="题目给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。 示例： 12345输入: S &#x3D; “ADOBECODEBANC”, T &#x3D; “ABC”输出: “BANC”说明：如果 S 中不存这样的子串，则返回空字符串 “”。如果 S 中存在这样的子串，我们保证它是唯一的答案。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode-最小覆盖子串">
 <meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/02/23/LeetCode-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##题目给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。 示例： 12345输入: S &#x3D; “ADOBECODEBANC”, T &#x3D; “ABC”输出: “BANC”说明：如果 S 中不存这样的子串，则返回空字符串 “”。如果 S 中存在这样的子串，我们保证它是唯一的答案。">
+<meta property="og:description" content="题目给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。 示例： 12345输入: S &#x3D; “ADOBECODEBANC”, T &#x3D; “ABC”输出: “BANC”说明：如果 S 中不存这样的子串，则返回空字符串 “”。如果 S 中存在这样的子串，我们保证它是唯一的答案。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-23T14:31:23.000Z">
-<meta property="article:modified_time" content="2021-06-02T08:13:22.177Z">
+<meta property="article:modified_time" content="2021-06-02T09:16:21.371Z">
 <meta property="article:author" content="Mzsu">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -268,11 +268,11 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>##题目<br>给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。</p>
+    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。</p>
 <p>示例：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: S = “ADOBECODEBANC”, T = “ABC”</span><br><span class="line">输出: “BANC”</span><br><span class="line">说明：</span><br><span class="line">如果 S 中不存这样的子串，则返回空字符串 “”。</span><br><span class="line">如果 S 中存在这样的子串，我们保证它是唯一的答案。</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<p>##解题<br>滑动窗口</p>
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>滑动窗口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> resultLeft = <span class="number">0</span>, resultRight = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> minLength = s.length() + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">char</span>[] charc = t.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> aChar : charc) &#123;</span><br><span class="line">            map.put(aChar, map.containsKey(aChar) ? map.get(aChar) + <span class="number">1</span> : <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span>[] chars = s.toCharArray();</span><br><span class="line">        <span class="keyword">while</span> (right &lt; s.length() &amp;&amp; left &lt; s.length())&#123;</span><br><span class="line">            <span class="keyword">if</span> (count == t.length())&#123;</span><br><span class="line">                <span class="keyword">if</span> (minLength &gt; right - left)&#123;</span><br><span class="line">                    minLength = right - left;</span><br><span class="line">                    resultLeft = left;</span><br><span class="line">                    resultRight = right;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (map.containsKey(chars[left]))&#123;</span><br><span class="line">                    <span class="keyword">if</span> (map.get(chars[left]) == <span class="number">0</span>)&#123;</span><br><span class="line">                        count--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    map.put(chars[left], map.get(chars[left]) + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                left++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                right++;</span><br><span class="line">                <span class="keyword">if</span> (right &gt;= s.length()) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (map.containsKey(chars[right]))&#123;</span><br><span class="line">                    <span class="keyword">if</span> (map.get(chars[right]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    map.put(chars[right], map.get(chars[right]) - <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(resultLeft == <span class="number">0</span> &amp;&amp; resultRight == -<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substring(resultLeft, resultRight + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
     
 
@@ -593,15 +593,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
+                <a href="javascript:void(0)" class="js-tag color5">3D vision</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">3D version</a>
+                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
               </li>
             
             <div class="clearfix"></div>

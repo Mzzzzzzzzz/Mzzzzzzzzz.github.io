@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="##题目给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。 你应当保留两个分区中每个节点的初始相对位置。 示例: 12输入: head &#x3D; 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x &#x3D; 3输出: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5">
+  <meta name="description" content="题目给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。 你应当保留两个分区中每个节点的初始相对位置。 示例: 12输入: head &#x3D; 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x &#x3D; 3输出: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode-分隔链表">
 <meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/02/28/LeetCode-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##题目给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。 你应当保留两个分区中每个节点的初始相对位置。 示例: 12输入: head &#x3D; 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x &#x3D; 3输出: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5">
+<meta property="og:description" content="题目给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。 你应当保留两个分区中每个节点的初始相对位置。 示例: 12输入: head &#x3D; 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x &#x3D; 3输出: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-28T05:38:52.000Z">
-<meta property="article:modified_time" content="2021-06-02T08:13:22.182Z">
+<meta property="article:modified_time" content="2021-06-02T09:16:21.359Z">
 <meta property="article:author" content="Mzsu">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -268,12 +268,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>##题目<br>给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。</p>
+    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。</p>
 <p>你应当保留两个分区中每个节点的初始相对位置。</p>
 <p>示例:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x = 3</span><br><span class="line">输出: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<p>##解题<br>1.创建两个虚拟头结点存储两个链表<br>2.遍历链表分别将两个链表节点放到两个链表中<br>3.连接两个链表</p>
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>1.创建两个虚拟头结点存储两个链表<br>2.遍历链表分别将两个链表节点放到两个链表中<br>3.连接两个链表</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">partition</span><span class="params">(ListNode head, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        ListNode dummyHead1 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode dummyHead2 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummyHead1.next = head;</span><br><span class="line">        ListNode node1 = dummyHead1;</span><br><span class="line">        ListNode node2 = dummyHead2;</span><br><span class="line">        <span class="keyword">while</span> (head != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (head.val &gt;= x) &#123;</span><br><span class="line">                node2.next = head;</span><br><span class="line">                node2 = node2.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                node1.next = head;</span><br><span class="line">                node1 = node1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        node1.next = dummyHead2.next;</span><br><span class="line">        node2.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> dummyHead1.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     
 
@@ -594,15 +594,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
+                <a href="javascript:void(0)" class="js-tag color5">3D vision</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">3D version</a>
+                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
               </li>
             
             <div class="clearfix"></div>

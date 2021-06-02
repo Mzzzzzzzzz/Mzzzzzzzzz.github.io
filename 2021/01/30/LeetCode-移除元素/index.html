@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="##题目给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1: 123给定 nums &#x3D; [3,2,2,3], val &#x3D; 3,函数应该返回新的长度 2, 并且 nums 中的前">
+  <meta name="description" content="题目给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1: 123给定 nums &#x3D; [3,2,2,3], val &#x3D; 3,函数应该返回新的长度 2, 并且 nums 中的前两个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode-移除元素">
 <meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/01/30/LeetCode-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##题目给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1: 123给定 nums &#x3D; [3,2,2,3], val &#x3D; 3,函数应该返回新的长度 2, 并且 nums 中的前">
+<meta property="og:description" content="题目给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1: 123给定 nums &#x3D; [3,2,2,3], val &#x3D; 3,函数应该返回新的长度 2, 并且 nums 中的前两个">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-30T05:22:58.000Z">
-<meta property="article:modified_time" content="2021-06-02T06:02:46.971Z">
+<meta property="article:modified_time" content="2021-06-02T09:16:21.378Z">
 <meta property="article:author" content="Mzsu">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -268,7 +268,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>##题目<br>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。</p>
+    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。</p>
 <p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
 <p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
 <p>示例 1:</p>
@@ -276,7 +276,7 @@
 <p>示例 2:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [0,1,2,2,3,0,4,2], val = 2,</span><br><span class="line">函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。</span><br><span class="line">注意这五个元素可为任意顺序。</span><br><span class="line">你不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<p>##解题<br>1.对整个数组进行一次快速排序中的partition操作即可, 将数组分为等于val和不等于val的两部分<br>2.设定[0,l]区间所有元素均不等于val,[l+1,i)区间元素等于val, l初始化化为-1, i初始化为0, 初始状态两个条件都满足设定<br>3.遍历数组, 在遍历的过程中保持[0,l],[l+1,i)两个区间的特性</p>
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>1.对整个数组进行一次快速排序中的partition操作即可, 将数组分为等于val和不等于val的两部分<br>2.设定[0,l]区间所有元素均不等于val,[l+1,i)区间元素等于val, l初始化化为-1, i初始化为0, 初始状态两个条件都满足设定<br>3.遍历数组, 在遍历的过程中保持[0,l],[l+1,i)两个区间的特性</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 其实就是根据快速排序的方式进行一次partition操作即可, 只是把元素分为不等于val和等于val的两部分</span></span><br><span class="line">        <span class="comment">// 设定[0,l]区间所有元素均不等于val,[l+1,i)区间元素等于val, l初始化化为-1, i初始化为0, 初始状态两个条件都满足设定</span></span><br><span class="line">        <span class="comment">// 遍历数组,进行partition操作</span></span><br><span class="line">        <span class="keyword">int</span> l = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] != val)&#123;</span><br><span class="line">                <span class="comment">// i==l+1时不需要交换位置,只需要l++即可, 否则l+1和i交换位置保障[0,l],[l+1,i)两个区间的特性</span></span><br><span class="line">                <span class="keyword">if</span>(i != l + <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">int</span> temp = nums[l + <span class="number">1</span>];</span><br><span class="line">                    nums[l + <span class="number">1</span>] = nums[i];</span><br><span class="line">                    nums[i] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;	</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     
@@ -598,15 +598,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
+                <a href="javascript:void(0)" class="js-tag color5">3D vision</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">3D version</a>
+                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
               </li>
             
             <div class="clearfix"></div>

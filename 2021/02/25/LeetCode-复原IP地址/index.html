@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="##题目给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。 示例: 12输入: &quot;25525511135&quot;输出: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]">
+  <meta name="description" content="题目给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。 示例: 12输入: &quot;25525511135&quot;输出: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode-复原IP地址">
 <meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/02/25/LeetCode-%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##题目给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。 示例: 12输入: &quot;25525511135&quot;输出: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]">
+<meta property="og:description" content="题目给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。 示例: 12输入: &quot;25525511135&quot;输出: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-25T04:44:15.000Z">
-<meta property="article:modified_time" content="2021-06-02T08:13:22.179Z">
+<meta property="article:modified_time" content="2021-06-02T09:16:21.364Z">
 <meta property="article:author" content="Mzsu">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -268,11 +268,11 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>##题目<br>给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</p>
+    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</p>
 <p>示例:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;25525511135&quot;</span><br><span class="line">输出: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<p>##解题<br>递归 + 回溯</p>
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>递归 + 回溯</p>
 <p>简单来说, 就是ip的每一段分别取1位, 2位, 3位, 分别穷举之后的字符, 并判断每部分是否为有效的ip.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == s || s.length() &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        restoreValidIp(s, <span class="number">1</span>, <span class="number">0</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">restoreValidIp</span><span class="params">(String s, <span class="keyword">int</span> part, <span class="keyword">int</span> start, String temp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = s.length();</span><br><span class="line">        <span class="keyword">if</span> (start &gt;= length) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (part == <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (isValid(s.substring(start))) &#123;</span><br><span class="line">                result.add(temp + s.substring(start));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String partStr;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span> &amp;&amp; start + i &lt; length ; i++) &#123;</span><br><span class="line">                partStr = s.substring(start, start + i);</span><br><span class="line">                <span class="keyword">if</span> (isValid(partStr)) &#123;</span><br><span class="line">                    restoreValidIp(s, part + <span class="number">1</span>, start + i, temp + partStr + <span class="string">&quot;.&quot;</span> );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String partIp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (partIp.length() &gt; <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (partIp.startsWith(<span class="string">&quot;0&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;0&quot;</span>.equals(partIp);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Integer.valueOf(partIp) &lt;= <span class="number">255</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     
@@ -594,15 +594,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
+                <a href="javascript:void(0)" class="js-tag color5">3D vision</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">3D version</a>
+                <a href="javascript:void(0)" class="js-tag color5">CGAL</a>
               </li>
             
             <div class="clearfix"></div>
