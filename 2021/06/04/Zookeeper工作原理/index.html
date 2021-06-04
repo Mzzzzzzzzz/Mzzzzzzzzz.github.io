@@ -6,17 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Mzzzzzzzzz.github.io">
-  <title>Archives: 2021 | Hexo</title>
+  <title>Zookeeper工作原理 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://mzzzzzzzzz.github.io/archives/2021/page/3/index.html">
+  <meta name="description" content="1、Zookeeper的角色 领导者（leader），负责进行投票的发起和决议，更新系统状态 学习者（learner），包括跟随者（follower）和观察者（observer），follower用于接受客户端请求并想客户端返回结果，在选主过程中参与投票 Observer可以接受客户端连接，将写请求转发给leader，但observer不参加投票过程，只同步leader的状态，observer的目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zookeeper工作原理">
+<meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、Zookeeper的角色 领导者（leader），负责进行投票的发起和决议，更新系统状态 学习者（learner），包括跟随者（follower）和观察者（observer），follower用于接受客户端请求并想客户端返回结果，在选主过程中参与投票 Observer可以接受客户端连接，将写请求转发给leader，但observer不参加投票过程，只同步leader的状态，observer的目">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/zkp1.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/zkp2.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/zkp3.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/zkp4.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/zkp5.png">
+<meta property="article:published_time" content="2021-06-04T12:04:44.000Z">
+<meta property="article:modified_time" content="2021-06-04T12:17:11.395Z">
 <meta property="article:author" content="Mzsu">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mzzzzzzzzz.github.io/images/zkp1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -210,445 +221,333 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Zookeeper工作原理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/09/LeetCode-75.%20%E9%A2%9C%E8%89%B2%E5%88%86%E7%B1%BB/" class="archive-article-date">
-        <time datetime="2021-02-09T04:29:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-09</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/09/LeetCode-75.%20%E9%A2%9C%E8%89%B2%E5%88%86%E7%B1%BB/" target="_blank">LeetCode-75. 颜色分类</a>
   
+    <h1 class="article-title" itemprop="name">
+      Zookeeper工作原理
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="archive-article-date">
+        <time datetime="2021-06-04T12:04:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-04</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">7分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="1、Zookeeper的角色"><a href="#1、Zookeeper的角色" class="headerlink" title="1、Zookeeper的角色"></a>1、Zookeeper的角色</h2><ul>
+<li>领导者（leader），负责进行投票的发起和决议，更新系统状态</li>
+<li>学习者（learner），包括跟随者（follower）和观察者（observer），follower用于接受客户端请求并想客户端返回结果，在选主过程中参与投票</li>
+<li>Observer可以接受客户端连接，将写请求转发给leader，但observer不参加投票过程，只同步leader的状态，observer的目的是为了扩展系统，提高读取速度</li>
+<li>客户端（client），请求发起方<br><img src="/images/zkp1.png" alt="alt"><br><img src="/images/zkp2.png" alt="alt"><span id="more"></span></li>
+<li>Zookeeper的核心是原子广播，这个机制保证了各个Server之间的同步。实现这个机制的协议叫做Zab协议。Zab协议有两种模式，它们分别是恢复模式（选主）和广播模式（同步）。当服务启动或者在领导者崩溃后，Zab就进入了恢复模式，当领导者被选举出来，且大多数Server完成了和leader的状态同步以后，恢复模式就结束了。状态同步保证了leader和Server具有相同的系统状态。</li>
+<li>为了保证事务的顺序一致性，zookeeper采用了递增的事务id号（zxid）来标识事务。所有的提议（proposal）都在被提出的时候加上了zxid。实现中zxid是一个64位的数字，它高32位是epoch用来标识leader关系是否改变，每次一个leader被选出来，它都会有一个新的epoch，标识当前属于那个leader的统治时期。低32位用于递增计数。</li>
+<li>每个Server在工作过程中有三种状态：<br>　　　　LOOKING：当前Server不知道leader是谁，正在搜寻<br>　　　　LEADING：当前Server即为选举出来的leader<br>　　　　FOLLOWING：leader已经选举出来，当前Server与之同步</li>
+</ul>
+<h2 id="2、Zookeeper-的读写机制"><a href="#2、Zookeeper-的读写机制" class="headerlink" title="2、Zookeeper 的读写机制"></a>2、Zookeeper 的读写机制</h2><ul>
+<li>Zookeeper是一个由多个server组成的集群</li>
+<li>一个leader，多个follower</li>
+<li>每个server保存一份数据副本</li>
+<li>全局数据一致</li>
+<li>分布式读写</li>
+<li>更新请求转发，由leader实施</li>
+</ul>
+<h2 id="3、Zookeeper-的保证"><a href="#3、Zookeeper-的保证" class="headerlink" title="3、Zookeeper 的保证"></a>3、Zookeeper 的保证</h2><ul>
+<li>更新请求顺序进行，来自同一个client的更新请求按其发送顺序依次执行</li>
+<li>数据更新原子性，一次数据更新要么成功，要么失败</li>
+<li>全局唯一数据视图，client无论连接到哪个server，数据视图都是一致的</li>
+<li>实时性，在一定事件范围内，client能读到最新数据</li>
+</ul>
+<h2 id="4、Zookeeper节点数据操作流程"><a href="#4、Zookeeper节点数据操作流程" class="headerlink" title="4、Zookeeper节点数据操作流程"></a>4、Zookeeper节点数据操作流程</h2><p><img src="/images/zkp3.png" alt="alt"><br>注：1.在Client向Follwer发出一个写的请求<br>2.Follwer把请求发送给Leader<br>3.Leader接收到以后开始发起投票并通知Follwer进行投票<br>4.Follwer把投票结果发送给Leader<br>5.Leader将结果汇总后如果需要写入，则开始写入同时把写入操作通知给Leader，然后commit;<br>6.Follwer把请求结果返回给Client</p>
+<p>Follower主要有四个功能：</p>
+<ul>
+<li><ol>
+<li>向Leader发送请求（PING消息、REQUEST消息、ACK消息、REVALIDATE消息）；</li>
+</ol>
+</li>
+<li>2 .接收Leader消息并进行处理；</li>
+<li>3 .接收Client的请求，如果为写请求，发送给Leader进行投票；</li>
+<li>4 .返回Client结果。<br>Follower的消息循环处理如下几种来自Leader的消息：</li>
+<li>1 .PING消息： 心跳消息；</li>
+<li>2 .PROPOSAL消息：Leader发起的提案，要求Follower投票；</li>
+<li>3 .COMMIT消息：服务器端最新一次提案的信息；</li>
+<li>4 .UPTODATE消息：表明同步完成；</li>
+<li>5 .REVALIDATE消息：根据Leader的REVALIDATE结果，关闭待revalidate的session还是允许其接受消息；</li>
+<li>6 .SYNC消息：返回SYNC结果到客户端，这个消息最初由客户端发起，用来强制得到最新的更新。</li>
+</ul>
+<h2 id="5、Zookeeper-leader-选举"><a href="#5、Zookeeper-leader-选举" class="headerlink" title="5、Zookeeper leader 选举"></a>5、Zookeeper leader 选举</h2><ul>
+<li>半数通过</li>
+<li>A提案说，我要选自己，B你同意吗？C你同意吗？B说，我同意选A；C说，我同意选A。(注意，这里超过半数了，其实在现实世界选举已经成功了。但是计算机世界是很严格，另外要理解算法，要继续模拟下去。)</li>
+<li>接着B提案说，我要选自己，A你同意吗；A说，我已经超半数同意当选，你的提案无效；C说，A已经超半数同意当选，B提案无效。</li>
+<li>接着C提案说，我要选自己，A你同意吗；A说，我已经超半数同意当选，你的提案无效；B说，A已经超半数同意当选，C的提案无效。</li>
+<li>选举已经产生了Leader，后面的都是follower，只能服从Leader的命令。而且这里还有个小细节，就是其实谁先启动谁当头。<br><img src="/images/zkp4.png" alt="alt"><br><img src="/images/zkp5.png" alt="alt"></li>
+</ul>
+<h2 id="6、zxid"><a href="#6、zxid" class="headerlink" title="6、zxid"></a>6、zxid</h2><ul>
+<li>znode节点的状态信息中包含czxid, 那么什么是zxid呢?</li>
+<li>ZooKeeper状态的每一次改变, 都对应着一个递增的Transaction id, 该id称为zxid. 由于zxid的递增性质, 如果zxid1小于zxid2, 那么zxid1肯定先于zxid2发生.创建任意节点, 或者更新任意节点的数据, 或者删除任意节点, 都会导致Zookeeper状态发生改变, 从而导致zxid的值增加.</li>
+</ul>
+<h2 id="7、Zookeeper工作原理"><a href="#7、Zookeeper工作原理" class="headerlink" title="7、Zookeeper工作原理"></a>7、Zookeeper工作原理</h2><ul>
+<li><p>Zookeeper的核心是原子广播，这个机制保证了各个server之间的同步。实现这个机制的协议叫做Zab协议。Zab协议有两种模式，它们分别是恢复模式和广播模式。当服务启动或者在领导者崩溃后，Zab就进入了恢复模式，当领导者被选举出来，且大多数server的完成了和leader的状态同步以后，恢复模式就结束了。状态同步保证了leader和server具有相同的系统状态</p>
+</li>
+<li><p>一旦leader已经和多数的follower进行了状态同步后，他就可以开始广播消息了，即进入广播状态。这时候当一个server加入zookeeper服务中，它会在恢复模式下启动，发现leader，并和leader进行状态同步。待到同步结束，它也参与消息广播。Zookeeper服务一直维持在Broadcast状态，直到leader崩溃了或者leader失去了大部分的followers支持。</p>
+</li>
+<li><p>广播模式需要保证proposal被按顺序处理，因此zk采用了递增的事务id号(zxid)来保证。所有的提议(proposal)都在被提出的时候加上了zxid。实现中zxid是一个64为的数字，它高32位是epoch用来标识leader关系是否改变，每次一个leader被选出来，它都会有一个新的epoch。低32位是个递增计数。</p>
+</li>
+<li><p>当leader崩溃或者leader失去大多数的follower，这时候zk进入恢复模式，恢复模式需要重新选举出一个新的leader，让所有的server都恢复到一个正确的状态。　</p>
+</li>
+<li><p>每个Server启动以后都询问其它的Server它要投票给谁。</p>
+</li>
+<li><p>对于其他server的询问，server每次根据自己的状态都回复自己推荐的leader的id和上一次处理事务的zxid（系统启动时每个server都会推荐自己）</p>
+</li>
+<li><p>收到所有Server回复以后，就计算出zxid最大的哪个Server，并将这个Server相关信息设置成下一次要投票的Server。</p>
+</li>
+<li><p>计算这过程中获得票数最多的的sever为获胜者，如果获胜者的票数超过半数，则改server被选为leader。否则，继续这个过程，直到leader被选举出来　　</p>
+</li>
+<li><p>leader就会开始等待server连接</p>
+</li>
+<li><p>Follower连接leader，将最大的zxid发送给leader</p>
+</li>
+<li><p>Leader根据follower的zxid确定同步点</p>
+</li>
+<li><p>完成同步后通知follower 已经成为uptodate状态</p>
+</li>
+<li><p>Follower收到uptodate消息后，又可以重新接受client的请求进行服务了</p>
+</li>
+</ul>
+<h2 id="8、数据一致性与paxos-算法"><a href="#8、数据一致性与paxos-算法" class="headerlink" title="8、数据一致性与paxos 算法"></a>8、数据一致性与paxos 算法</h2><ul>
+<li>Paxos算法解决的什么问题呢，解决的就是保证每个节点执行相同的操作序列。(有点难懂，暂时还没看懂)</li>
+</ul>
+<h2 id="9、Observer"><a href="#9、Observer" class="headerlink" title="9、Observer"></a>9、Observer</h2><ul>
+<li>Zookeeper需保证高可用和强一致性；</li>
+<li>为了支持更多的客户端，需要增加更多Server；</li>
+<li>Server增多，投票阶段延迟增大，影响性能；</li>
+<li>权衡伸缩性和高吞吐率，引入Observer</li>
+<li>Observer不参与投票；</li>
+<li>Observers接受客户端的连接，并将写请求转发给leader节点；</li>
+<li>加入更多Observer节点，提高伸缩性，同时不影响吞吐率</li>
+</ul>
+<h2 id="10、Zookeeper-的节点"><a href="#10、Zookeeper-的节点" class="headerlink" title="10、Zookeeper 的节点"></a>10、Zookeeper 的节点</h2><ul>
+<li>Znode有两种类型，短暂的（ephemeral）和持久的（persistent）</li>
+<li>Znode的类型在创建时确定并且之后不能再修改</li>
+<li>短暂znode的客户端会话结束时，zookeeper会将该短暂znode删除，短暂znode不可以有子节点</li>
+<li>持久znode不依赖于客户端会话，只有当客户端明确要删除该持久znode时才会被删除</li>
+<li>Znode有四种形式的目录节点</li>
+</ul>
+<p>1.PERSISTENT（持久的）<br>2.EPHEMERAL(暂时的)<br>3.PERSISTENT_SEQUENTIAL（持久化顺序编号目录节点）<br>4.EPHEMERAL_SEQUENTIAL（暂时化顺序编号目录节点）</p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Mzsu
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://Mzzzzzzzzz.github.io/2021/06/04/Zookeeper工作原理/" title="Zookeeper工作原理" target="_blank">https://Mzzzzzzzzz.github.io/2021/06/04/Zookeeper工作原理/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://mzzzzzzzzz.github.io/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/08/LeetCode-%E7%88%AC%E6%A5%BC%E6%A2%AF/" class="archive-article-date">
-        <time datetime="2021-02-08T04:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-08</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/06/01/Zookeeper%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Zookeeper搭建</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/08/LeetCode-%E7%88%AC%E6%A5%BC%E6%A2%AF/" target="_blank">LeetCode-爬楼梯</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/07/Windows%E4%B8%8BCGAL%E5%AE%89%E8%A3%85/" class="archive-article-date">
-        <time datetime="2021-02-07T07:52:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/07/Windows%E4%B8%8BCGAL%E5%AE%89%E8%A3%85/" target="_blank">Windows下CGAL安装</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CGAL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/06/LeetCode-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-        <time datetime="2021-02-06T13:21:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/06/LeetCode-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/" target="_blank">LeetCode-旋转链表</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/06/LeetCode-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/" class="archive-article-date">
-        <time datetime="2021-02-06T05:25:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/06/LeetCode-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/" target="_blank">LeetCode-最小路径和</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/05/LeetCode-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/" class="archive-article-date">
-        <time datetime="2021-02-05T04:23:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-05</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/05/LeetCode-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/" target="_blank">LeetCode-不同路径</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/04/LeetCode-%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" class="archive-article-date">
-        <time datetime="2021-02-04T13:19:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/04/LeetCode-%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" target="_blank">LeetCode-最大子序和</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/02/LeetCode-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" class="archive-article-date">
-        <time datetime="2021-02-02T06:18:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/02/LeetCode-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" target="_blank">LeetCode-字母异位词分组</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/02/01/LeetCode-%E5%85%A8%E6%8E%92%E5%88%97/" class="archive-article-date">
-        <time datetime="2021-02-01T04:16:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/02/01/LeetCode-%E5%85%A8%E6%8E%92%E5%88%97/" target="_blank">LeetCode-全排列</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/31/LeetCode-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C%20II/" class="archive-article-date">
-        <time datetime="2021-01-31T05:14:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-31</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/31/LeetCode-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C%20II/" target="_blank">LeetCode-组合总和 II</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2021/page/4/">4</a><a class="page-number" href="/archives/2021/page/5/">5</a><a class="page-number" href="/archives/2021/page/6/">6</a><a class="extend next" rel="next" href="/archives/2021/page/4/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -689,8 +588,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

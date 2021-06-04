@@ -217,6 +217,98 @@
             
 
   
+    <article id="post-Zookeeper工作原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" target="_blank">Zookeeper工作原理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="archive-article-date">
+        <time datetime="2021-06-04T12:04:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="1、Zookeeper的角色"><a href="#1、Zookeeper的角色" class="headerlink" title="1、Zookeeper的角色"></a>1、Zookeeper的角色</h2><ul>
+<li>领导者（leader），负责进行投票的发起和决议，更新系统状态</li>
+<li>学习者（learner），包括跟随者（follower）和观察者（observer），follower用于接受客户端请求并想客户端返回结果，在选主过程中参与投票</li>
+<li>Observer可以接受客户端连接，将写请求转发给leader，但observer不参加投票过程，只同步leader的状态，observer的目的是为了扩展系统，提高读取速度</li>
+<li>客户端（client），请求发起方<br><img src="/images/zkp1.png" alt="alt"><br><img src="/images/zkp2.png" alt="alt">
+    
+    <a class="article-more-a" href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Zookeeper搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -994,97 +1086,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/02/28/LeetCode-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-单词搜索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/02/27/LeetCode-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/" target="_blank">LeetCode-单词搜索</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/02/27/LeetCode-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/" class="archive-article-date">
-        <time datetime="2021-02-27T04:35:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个二维网格和一个单词，找出该单词是否存在于网格中。</p>
-<p>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</p>
-<p>示例:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">board =</span><br><span class="line">[</span><br><span class="line">  [&#x27;A&#x27;,&#x27;B&#x27;,&#x27;C&#x27;,&#x27;E&#x27;],</span><br><span class="line">  [&#x27;S&#x27;,&#x27;F&#x27;,&#x27;C&#x27;,&#x27;S&#x27;],</span><br><span class="line">  [&#x27;A&#x27;,&#x27;D&#x27;,&#x27;E&#x27;,&#x27;E&#x27;]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">给定 word = &quot;ABCCED&quot;, 返回 true.</span><br><span class="line">给定 word = &quot;SEE&quot;, 返回 true.</span><br><span class="line">给定 word = &quot;ABCB&quot;, 返回 false.</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/02/27/LeetCode-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/02/27/LeetCode-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/">展开全文 >></a>
     </p>
     
 
