@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Mzzzzzzzzz.github.io">
-  <title>1 | Hexo</title>
+  <title>寻找第K大数的总结 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="article">
-<meta property="og:title" content="1">
+  <meta name="description" content="题目描述输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。 本题最直接快速的解法就是对输入的数组进行排序，然后取它的前k个数即为所求，这种操作的时间复杂度是o(nlogn). 思路一、基于partition函数实现（时间复杂度o(n)）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="寻找第K大数的总结">
 <meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/06/06/%E5%AF%BB%E6%89%BE%E7%AC%ACK%E5%A4%A7%E6%95%B0%E7%9A%84%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目描述输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。 本题最直接快速的解法就是对输入的数组进行排序，然后取它的前k个数即为所求，这种操作的时间复杂度是o(nlogn). 思路一、基于partition函数实现（时间复杂度o(n)）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-06T03:59:58.000Z">
-<meta property="article:modified_time" content="2021-06-06T03:59:58.625Z">
+<meta property="article:modified_time" content="2021-06-06T04:21:12.094Z">
 <meta property="article:author" content="Mzsu">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -219,7 +222,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      1
+      寻找第K大数的总结
     </h1>
   
 
@@ -245,7 +248,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">1k字</span>
     </span>
   </span>
 
@@ -254,7 +257,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -265,7 +268,34 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</p>
+<p>本题最直接快速的解法就是对输入的数组进行排序，然后取它的前k个数即为所求，这种操作的时间复杂度是o(nlogn).</p>
+<h2 id="思路一、基于partition函数实现（时间复杂度o-n-）"><a href="#思路一、基于partition函数实现（时间复杂度o-n-）" class="headerlink" title="思路一、基于partition函数实现（时间复杂度o(n)）"></a>思路一、基于partition函数实现（时间复杂度o(n)）</h2><span id="more"></span>
+<p>可以用快速排序中的partition函数，基于数组中的第k个数来做调整，使得数组中比第k个数小的数都位于它的左边，比第k个数大的数都位于它的右边，调整之后位于最前面的k个数就是所求。（因为是快速排序，这k个数只是比枢轴小，但并不是完全排好序的。这种方法是在面试官允许修改输入数组的情况下才可以采用的）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">getTopK</span><span class="params">(<span class="keyword">int</span>[] input,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">		ArrayList&lt;Integer&gt; arraylist = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">		<span class="keyword">if</span>(input.length==<span class="number">0</span>||k&gt;input.length||k&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> arraylist;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> end = input.length - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> index = partition(input,begin,end);</span><br><span class="line">		<span class="keyword">while</span>(index!=k - <span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(index&gt;k - <span class="number">1</span>)&#123;</span><br><span class="line">				end = index - <span class="number">1</span>;</span><br><span class="line">				index = partition(input,begin,end);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				begin = index + <span class="number">1</span>;</span><br><span class="line">				index = partition(input,begin,end);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; k;i++)&#123;</span><br><span class="line">			arraylist.add(input[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> arraylist</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] input,<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> pivot = input[start];</span><br><span class="line">		<span class="keyword">while</span>(start&lt;end)&#123;</span><br><span class="line">			<span class="keyword">while</span>(start&lt;end&amp;&amp;input[end]&gt;=pivot)&#123;</span><br><span class="line">				end--;</span><br><span class="line">			&#125;</span><br><span class="line">			input[start] = input[end];</span><br><span class="line">			<span class="keyword">while</span>(start&lt;end&amp;&amp;input[start]&lt;=pivot)&#123;</span><br><span class="line">				start++;</span><br><span class="line">			&#125;</span><br><span class="line">			input[end] = input[start];</span><br><span class="line">		&#125;</span><br><span class="line">		input[start] = pivot;</span><br><span class="line">		<span class="keyword">return</span> start;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路二：适合处理海量数据的o-nlogk-解法"><a href="#思路二：适合处理海量数据的o-nlogk-解法" class="headerlink" title="思路二：适合处理海量数据的o(nlogk)解法"></a>思路二：适合处理海量数据的o(nlogk)解法</h2><ul>
+<li><p>step1:创建一个大小为k的数据容器来存储最小的k个数，接下来，每次从输入的n个整数中读入一个数.</p>
+</li>
+<li><p>step2:如果容器已有的数小于k，则直接把这次读入的整数放入容器中</p>
+</li>
+<li><p>step3:如果容器中已经有k个数了，容器已满。此时不能再插入新的数字，而需要替换已有的数。找到已有的k个数的最大值，将这次待插入的整数和最大值进行比较。</p>
+</li>
+</ul>
+<p>如果待插入的数比当前已有的最大值小，则用这个数替换当前已有数的最大值；</p>
+<p>如果待插入的数比当前已有数的最大值还要大，则这个数肯定不是最小的k个数之一，则抛弃它。<br>所以，当容器满了之后，需要做三件事，</p>
+<ul>
+<li>在k个整数中找到最大值；</li>
+<li>在这个容器中删除最大数。</li>
+<li>插入一个新的数<br>用二叉树来实现这个步骤，可以在o(logk)时间内实现这3个操作。对输入的n个数字而言，总的时间效率是o(nlogk)。</li>
+</ul>
+<p>二叉树：TreeSet里面绝大部分方法都市直接调用TreeMap方法来实现的。TreeMap和TreeSet都是有序的集合，也就是说他们存储的值都是排好序的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">getTopK</span><span class="params">(<span class="keyword">int</span>[] input,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">		ArrayList&lt;Integer&gt; arraylist = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">		<span class="keyword">if</span>(input.length==<span class="number">0</span>||k&gt;input.length||k&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> arraylist;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeSet&lt;Integer&gt; set = <span class="keyword">new</span> TreeSet&lt;Integer&gt;();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; input.length;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(set.size() &lt; k)&#123;</span><br><span class="line">				set.add(input[i]);</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span> (input[i] &lt; set.last()) &#123;</span><br><span class="line">				set.remove(set.last());</span><br><span class="line">				set.add(input[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		Iterator&lt;Integer&gt; iter = set.iterator();</span><br><span class="line">		<span class="keyword">while</span>(iter.hasNext())&#123;</span><br><span class="line">			list.add(iter.next);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该方法使用了额外的空间，而且运行的速度也比较慢，但是有两个优点。</p>
+<p>首先，没有修改输入的数据，对数据的操作都是在额外创建的容器中进行修改的。</p>
+<p>其次，该方法也很适合处理海量数据，海量数据因为数据量过大而没办法一次性加载到内存中来，因此用这个额外的容器来辅助读入数据，取出符合条件的数。</p>
+
     
 
     
@@ -311,7 +341,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://Mzzzzzzzzz.github.io/2021/06/06/寻找第K大数的总结/" title="1" target="_blank">https://Mzzzzzzzzz.github.io/2021/06/06/寻找第K大数的总结/</a>
+          <a href="https://Mzzzzzzzzz.github.io/2021/06/06/寻找第K大数的总结/" title="寻找第K大数的总结" target="_blank">https://Mzzzzzzzzz.github.io/2021/06/06/寻找第K大数的总结/</a>
         </li>
         
         <li>
@@ -328,6 +358,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
