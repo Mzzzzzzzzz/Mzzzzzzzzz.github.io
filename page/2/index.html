@@ -217,6 +217,102 @@
             
 
   
+    <article id="post-半边数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">半边数据结构</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
+        <time datetime="2021-03-02T01:13:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>表示多边形网格(polygon mesh)的一个常用方式就是使用共享的顶点列表和面的列表（里面包含面所含的顶点）。这样的表示方法在许多情况下都非常方便和高效，但是在某些特定的领域，反而会效率比较低。</p>
+<p>举例来说，网格简化(mesh simplification)通常需要把一条边退化成一个顶点。这个操作需要删除与这条边邻接的面并且更新面中存储的与这条边相关的顶点数据。这种多边形“手术”需要我们了解网格的组成部分的邻接关系，例如面和顶点。虽然我们肯定可以用之前提及的网格表示方法来实现网格简化，但是代价会比较高。许多情况下需要遍历面或者点的列表，或者二者都有。<br>在一个多边形网格上其他类型的的临近查询包括：</p>
+<ul>
+<li>哪条边用到了这个点</li>
+<li>哪条边用到这个点</li>
+<li>哪个面临近这条边</li>
+<li>哪条边临近这个面</li>
+<li>哪个面临近这个面</li>
+<li>为了使得这些类型的临近查询更加
+    
+    <a class="article-more-a" href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CGAL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-线段切割多边形算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1006,100 +1102,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/02/21/LeetCode-%E7%BB%84%E5%90%88/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-解码方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/02/20/LeetCode-%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95/" target="_blank">LeetCode-解码方法</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/02/20/LeetCode-%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95/" class="archive-article-date">
-        <time datetime="2021-02-20T06:32:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-20</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>一条包含字母 A-Z 的消息通过以下方式进行了编码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x27;A&#x27; -&gt; 1</span><br><span class="line">&#x27;B&#x27; -&gt; 2</span><br><span class="line">...</span><br><span class="line">&#x27;Z&#x27; -&gt; 26</span><br></pre></td></tr></table></figure>
-<p>给定一个只包含数字的非空字符串，请计算解码方法的总数。</p>
-<p>示例 1:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;12&quot;</span><br><span class="line">输出: 2</span><br><span class="line">解释: 它可以解码为 &quot;AB&quot;（1 2）或者 &quot;L&quot;（12）。</span><br></pre></td></tr></table></figure>
-<p>示例 2:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;226&quot;</span><br><span class="line">输出: 3</span><br><span class="line">解释: 它可以解码为 &quot;BZ&quot; (2 26), &quot;VF&quot; (22 6), 或者 &quot;BBF&quot; (2 2 6) 。</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/02/20/LeetCode-%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/02/20/LeetCode-%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95/">展开全文 >></a>
     </p>
     
 

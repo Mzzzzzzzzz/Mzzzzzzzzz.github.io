@@ -217,6 +217,80 @@
             
 
   
+    <article id="post-Centos7安装配置Mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/06/11/Centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEMysql/" target="_blank">1</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/06/11/Centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEMysql/" class="archive-article-date">
+        <time datetime="2021-06-11T08:41:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/06/11/Centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEMysql/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JVM结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -994,102 +1068,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/03/17/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%98%AF%E5%A6%82%E4%BD%95%E4%B8%8ELinux%E8%BF%9B%E8%A1%8C%E8%B0%83%E7%94%A8%E7%9A%84/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-半边数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">半边数据结构</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-        <time datetime="2021-03-02T01:13:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>表示多边形网格(polygon mesh)的一个常用方式就是使用共享的顶点列表和面的列表（里面包含面所含的顶点）。这样的表示方法在许多情况下都非常方便和高效，但是在某些特定的领域，反而会效率比较低。</p>
-<p>举例来说，网格简化(mesh simplification)通常需要把一条边退化成一个顶点。这个操作需要删除与这条边邻接的面并且更新面中存储的与这条边相关的顶点数据。这种多边形“手术”需要我们了解网格的组成部分的邻接关系，例如面和顶点。虽然我们肯定可以用之前提及的网格表示方法来实现网格简化，但是代价会比较高。许多情况下需要遍历面或者点的列表，或者二者都有。<br>在一个多边形网格上其他类型的的临近查询包括：</p>
-<ul>
-<li>哪条边用到了这个点</li>
-<li>哪条边用到这个点</li>
-<li>哪个面临近这条边</li>
-<li>哪条边临近这个面</li>
-<li>哪个面临近这个面</li>
-<li>为了使得这些类型的临近查询更加
-    
-    <a class="article-more-a" href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CGAL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/02/%E5%8D%8A%E8%BE%B9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">展开全文 >></a>
     </p>
     
 
