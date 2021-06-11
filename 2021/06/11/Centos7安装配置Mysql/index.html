@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Mzzzzzzzzz.github.io">
-  <title>1 | Hexo</title>
+  <title>Centos7安装配置Mysql | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="article">
-<meta property="og:title" content="1">
+  <meta name="description" content="一、系统环境yum update升级以后的系统版本为 12[root@VM-0-15-centos ~]# cat &#x2F;etc&#x2F;redhat-release CentOS Linux release 7.1.1503 (Core)   二、mysql安装一般网上给出的资料都是 123#yum install mysql#yum install mysql-server#yum install mys">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos7安装配置Mysql">
 <meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/06/11/Centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEMysql/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、系统环境yum update升级以后的系统版本为 12[root@VM-0-15-centos ~]# cat &#x2F;etc&#x2F;redhat-release CentOS Linux release 7.1.1503 (Core)   二、mysql安装一般网上给出的资料都是 123#yum install mysql#yum install mysql-server#yum install mys">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-11T08:41:51.000Z">
-<meta property="article:modified_time" content="2021-06-11T08:41:51.814Z">
+<meta property="article:modified_time" content="2021-06-11T08:50:07.467Z">
 <meta property="article:author" content="Mzsu">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -219,7 +222,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      1
+      Centos7安装配置Mysql
     </h1>
   
 
@@ -245,7 +248,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">746字</span>
     </span>
   </span>
 
@@ -254,7 +257,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -265,7 +268,49 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h2 id="一、系统环境"><a href="#一、系统环境" class="headerlink" title="一、系统环境"></a>一、系统环境</h2><p>yum update升级以后的系统版本为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-15-centos ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.1.1503 (Core) </span><br></pre></td></tr></table></figure>
+
+<h2 id="二、mysql安装"><a href="#二、mysql安装" class="headerlink" title="二、mysql安装"></a>二、mysql安装</h2><p>一般网上给出的资料都是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#yum install mysql</span><br><span class="line">#yum install mysql-server</span><br><span class="line">#yum install mysql-devel</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>安装mysql和mysql-devel都成功，但是安装mysql-server失败，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-15-centos ~]# yum install mysql-server</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.sina.cn</span><br><span class="line"> * extras: mirrors.sina.cn</span><br><span class="line"> * updates: mirrors.sina.cn</span><br><span class="line">No package mysql-server available.</span><br><span class="line">Error: Nothing to do</span><br></pre></td></tr></table></figure>
+
+<p>查资料发现是CentOS 7 版本将MySQL数据库软件从默认的程序列表中移除，用mariadb代替了。</p>
+<p>有两种解决办法：</p>
+<h4 id="1、方法一：安装mariadb"><a href="#1、方法一：安装mariadb" class="headerlink" title="1、方法一：安装mariadb"></a>1、方法一：安装mariadb</h4><p>MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可。开发这个分支的原因之一是：甲骨文公司收购了MySQL后，有将MySQL闭源的潜在风险，因此社区采用分支的方式来避开这个风险。MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-15-centos ~]# yum install mariadb-server mariadb </span><br></pre></td></tr></table></figure>
+<p>mariadb数据库的相关命令是：</p>
+<p>systemctl start mariadb  #启动MariaDB</p>
+<p>systemctl stop mariadb  #停止MariaDB</p>
+<p>systemctl restart mariadb  #重启MariaDB</p>
+<p>systemctl enable mariadb  #设置开机启动</p>
+<p>所以先启动数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-15-centos ~]# systemctl start mariadb</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以正常使用mysql了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-15-centos ~]# mysql -u root -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 3</span><br><span class="line">Server version: 5.5.41-MariaDB MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2014, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| test               |</span><br><span class="line">+--------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、方法二：官网下载安装mysql-server"><a href="#2、方法二：官网下载安装mysql-server" class="headerlink" title="2、方法二：官网下载安装mysql-server"></a>2、方法二：官网下载安装mysql-server</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line"># rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line"># yum install mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<p>安装成功后重启mysql服务。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># service mysqld restart</span><br></pre></td></tr></table></figure>
+
+<p>初次安装mysql，root账户没有密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-15-centos ~]# mysql -u root </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 3</span><br><span class="line">Server version: 5.6.26 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| test               |</span><br><span class="line">+--------------------+</span><br><span class="line">4 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set password for &#x27;root&#x27;@&#x27;localhost&#x27; =password(&#x27;password&#x27;);</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; </span><br></pre></td></tr></table></figure>
+
+<h2 id="三、配置mysql"><a href="#三、配置mysql" class="headerlink" title="三、配置mysql"></a>三、配置mysql</h2><h4 id="1、编码"><a href="#1、编码" class="headerlink" title="1、编码"></a>1、编码</h4><p>mysql配置文件为/etc/my.cnf</p>
+<p>最后加上编码配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysql]</span><br><span class="line">default-character-set =utf8</span><br></pre></td></tr></table></figure>
+<p>这里的字符编码必须和/usr/share/mysql/charsets/Index.xml中一致。</p>
+<h4 id="2、远程连接设置"><a href="#2、远程连接设置" class="headerlink" title="2、远程连接设置"></a>2、远程连接设置</h4><p>把在所有数据库的所有表的所有权限赋值给位于所有IP地址的root用户。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant all privileges on *.* to root@&#x27;%&#x27;identified by &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>由于是腾讯云，还需要关闭服务器的防火墙</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig iptables off</span><br></pre></td></tr></table></figure>
     
 
     
@@ -311,7 +356,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://Mzzzzzzzzz.github.io/2021/06/11/Centos7安装配置Mysql/" title="1" target="_blank">https://Mzzzzzzzzz.github.io/2021/06/11/Centos7安装配置Mysql/</a>
+          <a href="https://Mzzzzzzzzz.github.io/2021/06/11/Centos7安装配置Mysql/" title="Centos7安装配置Mysql" target="_blank">https://Mzzzzzzzzz.github.io/2021/06/11/Centos7安装配置Mysql/</a>
         </li>
         
         <li>
@@ -328,6 +373,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
