@@ -217,6 +217,101 @@
             
 
   
+    <article id="post-SQL优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/06/13/SQL%E4%BC%98%E5%8C%96/" target="_blank">SQL优化</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/06/13/SQL%E4%BC%98%E5%8C%96/" class="archive-article-date">
+        <time datetime="2021-06-13T06:35:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-13</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="一、查看SQL执行频率"><a href="#一、查看SQL执行频率" class="headerlink" title="一、查看SQL执行频率"></a>一、查看SQL执行频率</h2><p>通过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show [session|global] status</span><br></pre></td></tr></table></figure>
+<p>可以提供服务器状态信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show [session|global] status</span><br></pre></td></tr></table></figure>
+<p>可以根据需要加上参数“session”或者“global”来显示 session 级（当前连接）的统计结果和 global 级（自数据库上次启动至今）的统计结果。如果不写，默认使用参数是“session”。</p>
+<p>如：显示当前 session 中所有统计参数的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW STATUS LIKE &#x27;Com_______&#x27;;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/sql1.png" alt="alt"></p>
+    
+    <a class="article-more-a" href="/2021/06/13/SQL%E4%BC%98%E5%8C%96/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/06/13/SQL%E4%BC%98%E5%8C%96/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Centos7安装配置Mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -998,94 +1093,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/05/02/PointNet/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java中的线程是如何与Linux进行调用的" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/03/17/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%98%AF%E5%A6%82%E4%BD%95%E4%B8%8ELinux%E8%BF%9B%E8%A1%8C%E8%B0%83%E7%94%A8%E7%9A%84/" target="_blank">Java中的线程是如何与Linux进行调用的</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/03/17/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%98%AF%E5%A6%82%E4%BD%95%E4%B8%8ELinux%E8%BF%9B%E8%A1%8C%E8%B0%83%E7%94%A8%E7%9A%84/" class="archive-article-date">
-        <time datetime="2021-03-17T02:39:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在Java基础中我们知道，一般要实现一个线程通常是有两种方法，当然这里没有算上使用callable等其他的实现方式。如果使用继承Thread或者实现runnable接口，那么便需要重写里面的run方法。</p>
-    
-    <a class="article-more-a" href="/2021/03/17/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%98%AF%E5%A6%82%E4%BD%95%E4%B8%8ELinux%E8%BF%9B%E8%A1%8C%E8%B0%83%E7%94%A8%E7%9A%84/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/17/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%98%AF%E5%A6%82%E4%BD%95%E4%B8%8ELinux%E8%BF%9B%E8%A1%8C%E8%B0%83%E7%94%A8%E7%9A%84/">展开全文 >></a>
     </p>
     
 
