@@ -217,6 +217,95 @@
             
 
   
+    <article id="post-Mysql锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/06/16/Mysql%E9%94%81/" target="_blank">Mysql锁</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/06/16/Mysql%E9%94%81/" class="archive-article-date">
+        <time datetime="2021-06-16T04:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="1-锁概述"><a href="#1-锁概述" class="headerlink" title="1 锁概述"></a>1 锁概述</h2><p>锁是计算机协调多个进程或线程并发访问某一资源的机制（避免争抢）。在数据库中，除传统的计算资源（如 CPU、RAM、I/O 等）的争用以外，数据也是一种供许多用户共享的资源。如何保证数据并发访问的一致性、有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。从这个角度来说，锁对数据库而言显得尤其重要，也更加复杂。</p>
+<h2 id="2-锁分类"><a href="#2-锁分类" class="headerlink" title="2 锁分类"></a>2 锁分类</h2><p>从对数据操作的粒度分 ：<br>1） 表锁：操作时，会锁定整个表。<br>2） 行锁：操作时，会锁定当前操作行。<br>从对数据操作的类型分：<br>1） 读锁（共享锁）：针对同一份数据，多个读操作可以同时进行而不会互相影响<br>2） 写锁（排它锁）：当前操作没有完成之前，它会阻断其他写锁和读锁</p>
+    
+    <a class="article-more-a" href="/2021/06/16/Mysql%E9%94%81/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/06/16/Mysql%E9%94%81/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SQL优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1005,94 +1094,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/05/08/PointNet++/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PointNet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/05/02/PointNet/" target="_blank">PointNet</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/05/02/PointNet/" class="archive-article-date">
-        <time datetime="2021-05-02T03:28:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-02</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="PointNet"><a href="#PointNet" class="headerlink" title="PointNet"></a><a target="_blank" rel="noopener" href="http://stanford.edu/~rqi/pointnet/">PointNet</a></h2><p>PointNet是斯坦福大学研究人员提出的一个点云处理网络，与先前工作的不同在于这一网络可以直接输入无序点云进行处理，而无序将数据处理成规则的3Dvoxel形式进行处理。输入点云顺序对于网络的输出结果没有影响，同时也可以处理旋转平移后的点云数据。<br>点云是一种重要的几何数据形式。卷积网络通常需要规则的数据形式作为输入，但由于点云是非规则数据类型所以通常的做法大都先对点云进行规则化的处理，将空间划分成网格的体素voxel就是一种典型的做法。但这样的方式会造成有很多不必要的体积划分使得输入数据变得稀疏，同时会影响点云数据的不变性。</p>
-    
-    <a class="article-more-a" href="/2021/05/02/PointNet/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">3D vision</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/05/02/PointNet/">展开全文 >></a>
     </p>
     
 

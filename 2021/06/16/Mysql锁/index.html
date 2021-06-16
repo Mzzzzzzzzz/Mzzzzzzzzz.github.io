@@ -6,17 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Mzzzzzzzzz.github.io">
-  <title>Archives | Hexo</title>
+  <title>Mysql锁 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://mzzzzzzzzz.github.io/archives/page/6/index.html">
+  <meta name="description" content="1 锁概述锁是计算机协调多个进程或线程并发访问某一资源的机制（避免争抢）。在数据库中，除传统的计算资源（如 CPU、RAM、I&#x2F;O 等）的争用以外，数据也是一种供许多用户共享的资源。如何保证数据并发访问的一致性、有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。从这个角度来说，锁对数据库而言显得尤其重要，也更加复杂。 2 锁分类从对数据操作的粒度分 ：1） 表锁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql锁">
+<meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/06/16/Mysql%E9%94%81/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 锁概述锁是计算机协调多个进程或线程并发访问某一资源的机制（避免争抢）。在数据库中，除传统的计算资源（如 CPU、RAM、I&#x2F;O 等）的争用以外，数据也是一种供许多用户共享的资源。如何保证数据并发访问的一致性、有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。从这个角度来说，锁对数据库而言显得尤其重要，也更加复杂。 2 锁分类从对数据操作的粒度分 ：1） 表锁">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/sqllock2.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/sqllock3.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/sqllock1.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/sqllock1.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/sqllock5.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/sqllock6.png">
+<meta property="article:published_time" content="2021-06-16T04:51:57.000Z">
+<meta property="article:modified_time" content="2021-06-16T05:18:32.966Z">
 <meta property="article:author" content="Mzsu">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mzzzzzzzzz.github.io/images/sqllock2.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -210,327 +222,434 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Mysql锁" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/17/Hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AERSS%E6%8F%92%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2021-01-17T07:49:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/17/Hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AERSS%E6%8F%92%E4%BB%B6/" target="_blank">Hexo博客配置RSS插件</a>
   
+    <h1 class="article-title" itemprop="name">
+      Mysql锁
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2021/06/16/Mysql%E9%94%81/" class="archive-article-date">
+        <time datetime="2021-06-16T04:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.6k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">9分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="1-锁概述"><a href="#1-锁概述" class="headerlink" title="1 锁概述"></a>1 锁概述</h2><p>锁是计算机协调多个进程或线程并发访问某一资源的机制（避免争抢）。在数据库中，除传统的计算资源（如 CPU、RAM、I/O 等）的争用以外，数据也是一种供许多用户共享的资源。如何保证数据并发访问的一致性、有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。从这个角度来说，锁对数据库而言显得尤其重要，也更加复杂。</p>
+<h2 id="2-锁分类"><a href="#2-锁分类" class="headerlink" title="2 锁分类"></a>2 锁分类</h2><p>从对数据操作的粒度分 ：<br>1） 表锁：操作时，会锁定整个表。<br>2） 行锁：操作时，会锁定当前操作行。<br>从对数据操作的类型分：<br>1） 读锁（共享锁）：针对同一份数据，多个读操作可以同时进行而不会互相影响<br>2） 写锁（排它锁）：当前操作没有完成之前，它会阻断其他写锁和读锁</p>
+<span id="more"></span>
+<h2 id="3-Mysql-锁"><a href="#3-Mysql-锁" class="headerlink" title="3 Mysql 锁"></a>3 Mysql 锁</h2><p>相对其他数据库而言，MySQL的锁机制比较简单，其最显著的特点是不同的存储引擎支持不同的锁机制。下表中罗列出了各存储引擎对锁的支持情况</p>
+<table>
+<thead>
+<tr>
+<th align="left">存储引擎</th>
+<th align="left">表级锁</th>
+<th align="left">行级锁</th>
+<th align="left">页面锁</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">MyISAM</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">InnoDB</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">MEMORY</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">BDB</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+</tr>
+</tbody></table>
+<p>MySQL这3种锁的特性可大致归纳如下 ：</p>
+<table>
+<thead>
+<tr>
+<th align="left">锁类型</th>
+<th align="left">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">表级锁</td>
+<td align="left">偏向MyISAM 存储引擎，开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高,并发度最低。</td>
+</tr>
+<tr>
+<td align="left">行级锁</td>
+<td align="left">偏向InnoDB 存储引擎，开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低,并发度也最高。</td>
+</tr>
+<tr>
+<td align="left">页面锁</td>
+<td align="left">开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般。</td>
+</tr>
+</tbody></table>
+<p>从上述特点可见，很难笼统地说哪种锁更好，只能就具体应用的特点来说哪种锁更合适！仅从锁的角度来说：表级锁更适合于以查询为主，只有少量按索引条件更新数据的应用，如Web 应用；而行级锁则更适合于有大量按索引条件并发更新少量不同数据，同时又有并查询的应用，如一些在线事务处理（OLTP）系统。</p>
+<h2 id="4-MyISAM-表锁"><a href="#4-MyISAM-表锁" class="headerlink" title="4 MyISAM 表锁"></a>4 MyISAM 表锁</h2><p>MyISAM 存储引擎只支持表锁，这也是MySQL开始几个版本中唯一支持的锁类型。</p>
+<ul>
+<li>如何加表锁<br>MyISAM 在执行查询语句（SELECT）前，会自动给涉及的所有表加读锁，在执行更新操作（UPDATE、DELETE、INSERT 等）前，会自动给涉及的表加写锁，这个过程并不需要用户干预，因此，用户一般不需要直接用 LOCK TABLE 命令给 MyISAM 表显式加锁。</li>
+</ul>
+<p>显示加表锁语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">加读锁 ： lock <span class="keyword">table</span> table_name read; </span><br><span class="line">加写锁 ： lock <span class="keyword">table</span> table_name write；</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查看锁的争用情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">open</span> tables;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/sqllock2.png" alt="alt"><br>In_user : 表当前被查询使用的次数。如果该数为零，则表是打开的，但是当前没有被使用。<br>Name_locked：表名称是否被锁定。名称锁定用于取消表或对表进行重命名等操作。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> status <span class="keyword">like</span> <span class="string">&#x27;Table_locks%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/sqllock3.png" alt="alt"><br>Table_locks_immediate ： 指的是能够立即获得表级锁的次数，每立即获取锁，值加1。 Table_locks_waited ： 指的是不能立即获取表级锁而需要等待的次数，每等待一次，该值加1，此值高说明存在着<br>较为严重的表级锁争用情况。</p>
+</li>
+<li><p>结论<br>锁模式的相互兼容性如表中所示<br><img src="/images/sqllock1.png" alt="alt"><br>由上表可见：<br>1） 对MyISAM 表的读操作，不会阻塞其他用户对同一表的读请求，但会阻塞对同一表的写请求；<br>2） 对MyISAM 表的写操作，则会阻塞其他用户对同一表的读和写操作；<br>简而言之，就是读锁会阻塞写，但是不会阻塞读。而写锁，则既会阻塞读，又会阻塞写。此外，MyISAM 的读写锁调度是写优先，这也是MyISAM不适合做写为主的表的存储引擎的原因。因为写锁后，其<br>他线程不能做任何操作，大量的更新会使查询很难得到锁，从而造成永远阻塞。</p>
+</li>
+</ul>
+<h2 id="5-InnoDB-行锁"><a href="#5-InnoDB-行锁" class="headerlink" title="5 InnoDB 行锁"></a>5 InnoDB 行锁</h2><ul>
+<li><p>行锁介绍<br>行锁特点 ：偏向InnoDB 存储引擎，开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低,并发度也最高。<br>InnoDB 与 MyISAM 的最大不同有两点：一是支持事务；二是 采用了行级锁。</p>
+</li>
+<li><p>背景知识<br>事务及其ACID属性<br>事务是由一组SQL语句组成的逻辑处理单元。<br>事务具有以下4个特性，简称为事务ACID属性。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">ACID属性</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">原子性（Atomicity）</td>
+<td align="left">事务是一个原子操作单元，其对数据的修改，要么全部成功，要么全部失败。</td>
+</tr>
+<tr>
+<td align="left">一致性（Consistent）</td>
+<td align="left">在事务开始和完成时，数据都必须保持一致状态。</td>
+</tr>
+<tr>
+<td align="left">隔离性（Isolation）</td>
+<td align="left">数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的 “独立” 环境下运行。</td>
+</tr>
+<tr>
+<td align="left">持久性（Durable）</td>
+<td align="left">事务完成之后，对于数据的修改是永久的。</td>
+</tr>
+</tbody></table>
+<p>并发事务处理带来的问题</p>
+<table>
+<thead>
+<tr>
+<th align="left">问题</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">丢失更新（Lost Update）</td>
+<td align="left">当两个或多个事务选择同一行，最初的事务修改的值，会被后面的事务修改的值覆盖。</td>
+</tr>
+<tr>
+<td align="left">脏读（Dirty Reads）</td>
+<td align="left">当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。</td>
+</tr>
+<tr>
+<td align="left">不可重复读（Non-Repeatable Reads）</td>
+<td align="left">一个事务在读取某些数据后的某个时间，再次读取以前读过的数据，却发现和以前读出的数据不一致。</td>
+</tr>
+<tr>
+<td align="left">幻读（Phantom Reads）</td>
+<td align="left">一个事务按照相同的查询条件重新读取以前查询过的数据，却发现其他事务插入了满足其查询条件的新数据。</td>
+</tr>
+</tbody></table>
+<p>事务隔离级别<br>为了解决上述提到的事务并发问题，数据库提供一定的事务隔离机制来解决这个问题。数据库的事务隔离越严格，<br>并发副作用越小，但付出的代价也就越大，因为事务隔离实质上就是使用事务在一定程度上“串行化” 进行，这显然<br>与“并发” 是矛盾的。<br>数据库的隔离级别有4个，由低到高依次为Read uncommitted、Read committed、Repeatable read、<br>Serializable，这四个级别可以逐个解决脏写、脏读、不可重复读、幻读这几类问题。</p>
+<table>
+<thead>
+<tr>
+<th align="left">隔离级别</th>
+<th align="left">丢失更新</th>
+<th align="left">脏读</th>
+<th align="left">不可重复读</th>
+<th align="left">幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Read uncommitted</td>
+<td align="left">×</td>
+<td align="left">√</td>
+<td align="left">√</td>
+<td align="left">√</td>
+</tr>
+<tr>
+<td align="left">Read committed</td>
+<td align="left">×</td>
+<td align="left">×</td>
+<td align="left">√</td>
+<td align="left">√</td>
+</tr>
+<tr>
+<td align="left">Repeatable read（默认）</td>
+<td align="left">×</td>
+<td align="left">×</td>
+<td align="left">×</td>
+<td align="left">√</td>
+</tr>
+<tr>
+<td align="left">Serializable</td>
+<td align="left">×</td>
+<td align="left">×</td>
+<td align="left">×</td>
+<td align="left">×</td>
+</tr>
+</tbody></table>
+<p>Mysql 的数据库的默认隔离级别为 Repeatable read ， 查看方式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;tx_isolation&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/sqllock1.png" alt="alt"></p>
+<ul>
+<li>InnoDB 的行锁模式<br>InnoDB 实现了以下两种类型的行锁。</li>
+</ul>
+<p>1)共享锁（S）：又称为读锁，简称S锁，共享锁就是多个事务对于同一数据可以共享一把锁，都能访问到数据，但是只能读不能修改。<br>2)排他锁（X）：又称为写锁，简称X锁，排他锁就是不能与其他锁并存，如一个事务获取了一个数据行的排他锁，其他事务就不能再获取该行的其他锁，包括共享锁和排他锁，但是获取排他锁的事务是可以对数据就行读取和修改。</p>
+<p>对于UPDATE、DELETE和INSERT语句，InnoDB会自动给涉及数据集加排他锁（X)；<br>对于普通SELECT语句，InnoDB不会加任何锁；<br>可以通过以下语句显示给记录集加共享锁或排他锁</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">共享锁（S）：<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> ... LOCK <span class="keyword">IN</span> SHARE MODE </span><br><span class="line">排他锁（X) ：<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> ... <span class="keyword">FOR</span> UPDATE</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>无索引行锁升级为表锁</li>
+</ul>
+<p>如果不通过索引条件检索数据，那么InnoDB将对表中的所有记录加锁，实际效果跟表锁一样。<br>查看当前表的索引 ： show index from test_innodb_lock ;<br><img src="/images/sqllock5.png" alt="alt"></p>
+<ul>
+<li><p>间隙锁危害<br>当我们用范围条件，而不是使用相等条件检索数据，并请求共享或排他锁时，InnoDB会给符合条件的已有数据进行加锁； 对于键值在条件范围内但并不存在的记录，叫做 “间隙（GAP）” ， InnoDB也会对这个 “间隙” 加锁，这种锁机制就是所谓的 间隙锁（Next-Key锁），也即如果使用where id &lt; 4的条件，那么就会对id=1,2,3都加锁，而实际上目前数据库中没有id = 2 的数据，这时如果insert id=2就会失败。</p>
+</li>
+<li><p>InnoDB 行锁争用情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> status <span class="keyword">like</span> <span class="string">&#x27;innodb_row_lock%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/sqllock6.png" alt="alt"></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Innodb_row_lock_current_waits: 当前正在等待锁定的数量</span><br><span class="line">Innodb_row_lock_time: 从系统启动到现在锁定总时间长度</span><br><span class="line">Innodb_row_lock_time_avg:每次等待所花平均时长</span><br><span class="line">Innodb_row_lock_time_max:从系统启动到现在等待最长的一次所花的时间</span><br><span class="line">Innodb_row_lock_waits: 系统启动后到现在总共等待的次数</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>总结<br>InnoDB存储引擎由于实现了行级锁定，虽然在锁定机制的实现方面带来了性能损耗可能比表锁会更高一些，但是在整体并发处理能力方面要远远由于MyISAM的表锁的。当系统并发量较高的时候，InnoDB的整体性能和MyISAM相比就会有比较明显的优势。但是，InnoDB的行级锁同样也有其脆弱的一面，当我们使用不当的时候，可能会让InnoDB的整体性能表现不仅不能比MyISAM高，甚至可能会更差。</li>
+</ul>
+<p>优化建议：<br>1)尽可能让所有数据检索都能通过索引来完成，避免无索引行锁升级为表锁。<br>2)合理设计索引，尽量缩小锁的范围<br>3)尽可能减少索引条件，及索引范围，避免间隙锁<br>4)尽量控制事务大小，减少锁定资源量和时间长度<br>5)尽可使用低级别事务隔离（但是需要业务层面满足需求）</p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Mzsu
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://Mzzzzzzzzz.github.io/2021/06/16/Mysql锁/" title="Mysql锁" target="_blank">https://Mzzzzzzzzz.github.io/2021/06/16/Mysql锁/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://mzzzzzzzzz.github.io/2021/06/16/Mysql%E9%94%81/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/16/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0helper-live2d%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2021-01-16T08:35:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-16</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/06/13/SQL%E4%BC%98%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SQL优化</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/16/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0helper-live2d%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6/" target="_blank">Hexo博客添加helper-live2d动态模型插件</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">搭建blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/16/Hexo%E7%BC%96%E8%AF%91%E6%96%87%E6%A1%A3%E6%97%B6JS%E6%88%96HTML%E6%B7%B7%E4%B9%B1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
-        <time datetime="2021-01-16T03:26:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/16/Hexo%E7%BC%96%E8%AF%91%E6%96%87%E6%A1%A3%E6%97%B6JS%E6%88%96HTML%E6%B7%B7%E4%B9%B1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank">Hexo编译文档时JS或HTML混乱解决方案</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">搭建blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/16/%E5%85%B3%E4%BA%8Enpm-install%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="archive-article-date">
-        <time datetime="2021-01-16T01:33:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/16/%E5%85%B3%E4%BA%8Enpm-install%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_blank">关于npm install失败的解决方法</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">搭建blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/15/hexo%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/" class="archive-article-date">
-        <time datetime="2021-01-15T09:23:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/15/hexo%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/" target="_blank">Hexo更换主题</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">搭建blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/14/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-        <time datetime="2021-01-14T04:31:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/14/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" target="_blank">Hexo的基本配置</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">搭建blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/01/13/hexo%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-        <time datetime="2021-01-13T12:18:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/01/13/hexo%E6%90%AD%E5%BB%BA/" target="_blank">Hexo搭建</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">搭建blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span>
-    </nav>
-  
 
 
           </div>
@@ -571,8 +690,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
