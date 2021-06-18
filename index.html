@@ -217,6 +217,286 @@
             
 
   
+    <article id="post-Mysql复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/06/24/Mysql%E5%A4%8D%E5%88%B6/" target="_blank">Mysql复制</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/06/24/Mysql%E5%A4%8D%E5%88%B6/" class="archive-article-date">
+        <time datetime="2021-06-24T04:02:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-24</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="复制概述"><a href="#复制概述" class="headerlink" title="复制概述"></a>复制概述</h2><p>复制是指将主数据库的DDL 和 DML 操作通过二进制日志传到从库服务器中，然后在从库上对这些日志重新执行（也叫重做），从而使得从库和主库的数据保持同步。<br>MySQL支持一台主库同时向多台从库进行复制， 从库同时也可以作为其他从服务器的主库，实现链状复制。</p>
+<h2 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a>复制原理</h2><p>MySQL 的主从复制原理如下。<br><img src="/images/sqlcopy1.png" alt="alt"></p>
+<p>从上层来看，复制分成三步：</p>
+<ul>
+<li>Master 主库在事务提交时，会把数据变更作为时间 Events 记录在二进制日志文件 Binlog 中。</li>
+<li>主库推送二进制日志文件 Binlog 中的日志事件到从库的中继日志 Relay Log 。</li>
+<li>slave重做中继日志中的事件，将改变反映它自己的数据。
+    
+    <a class="article-more-a" href="/2021/06/24/Mysql%E5%A4%8D%E5%88%B6/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/06/24/Mysql%E5%A4%8D%E5%88%B6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mysql 日志" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/06/20/Mysql%20%E6%97%A5%E5%BF%97/" target="_blank">Mysql 日志</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/06/20/Mysql%20%E6%97%A5%E5%BF%97/" class="archive-article-date">
+        <time datetime="2021-06-20T04:33:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在任何一种数据库中，都会有各种各样的日志，记录着数据库工作的方方面面，以帮助数据库管理员追踪数据库曾经发生过的各种事件。MySQL 也不例外，在 MySQL 中，有 4 种不同的日志，分别是错误日志、二进制日志（BINLOG 日志）、查询日志和慢查询日志，这些日志记录着数据库在不同方面的踪迹。</p>
+<h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><p>错误日志是 MySQL 中最重要的日志之一，它记录了当 mysqld 启动和停止时，以及服务器在运行过程中发生任何严重错误时的相关信息。当数据库出现任何故障导致无法正常使用时，可以首先查看此日志。<br>该日志是默认开启的 ，默认存放目录为 mysql 的数据目录（var/lib/mysql）, 默认的日志文件名为hostname.err（hostname是主机名）。<br>查看日志位置指令 ：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;log_error%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/sqllog1.png" alt="alt"></p>
+    
+    <a class="article-more-a" href="/2021/06/20/Mysql%20%E6%97%A5%E5%BF%97/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/06/20/Mysql%20%E6%97%A5%E5%BF%97/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mysql常用工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/06/18/Mysql%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" target="_blank">Mysql常用工具</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/06/18/Mysql%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="archive-article-date">
+        <time datetime="2021-06-18T03:33:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-18</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><p>该mysql不是指mysql服务，而是指mysql的客户端工具。<br>语法:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql [options] [database]</span><br></pre></td></tr></table></figure>
+<h4 id="连接选项"><a href="#连接选项" class="headerlink" title="连接选项"></a>连接选项</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">参数 ：</span><br><span class="line">	-u, --user=name 指定用户名 </span><br><span class="line">	-p, --password[=name] 指定密码 </span><br><span class="line">	-h, --host=name 指定服务器IP或域名 </span><br><span class="line">	-P, --port=# 指定连接端口 </span><br><span class="line">示例 ：</span><br><span class="line">	mysql -h 127.0.0.1 -P 3306 -u root -p </span><br><span class="line">	mysql -h127.0.0.1 -P3306 -uroot -p2143</span><br></pre></td></tr></table></figure>
+
+<h4 id="执行选项"><a href="#执行选项" class="headerlink" title="执行选项"></a>执行选项</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-e, --execute=name 执行SQL语句并退出</span><br></pre></td></tr></table></figure>
+<p>此选项可以在Mysql客户端执行SQL语句，而不用连接到MySQL数据库再执行，对于一些批处理脚本，这种方式尤<br>其方便。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line">	mysql -uroot -p2143 db01 -e &quot;select * from tb_book&quot;;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/mysql1.png" alt="alt"></p>
+    
+    <a class="article-more-a" href="/2021/06/18/Mysql%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/06/18/Mysql%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mysql锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -859,270 +1139,6 @@
 
 
   
-    <article id="post-Randla net" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/05/21/Randla%20net/" target="_blank">Randla net</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/05/21/Randla%20net/" class="archive-article-date">
-        <time datetime="2021-05-21T11:30:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="Randla-net"><a href="#Randla-net" class="headerlink" title="Randla net"></a>Randla net</h2><p>针对目前点云分割存在速度慢、显存需求大的问题，该文提出以一种高效率学习的方法。从论文的结果来看，该文不仅在计算时间和计算资源上大幅缩减，分割效果也是达到甚至超过了SOTA。<br><img src="/images/rdn1.png" alt="alt"></p>
-    
-    <a class="article-more-a" href="/2021/05/21/Randla%20net/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">3D vision</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/05/21/Randla%20net/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Point Transformer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/05/14/Point%20Transformer/" target="_blank">Point Transformer</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/05/14/Point%20Transformer/" class="archive-article-date">
-        <time datetime="2021-05-14T11:18:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="Point-Transformer"><a href="#Point-Transformer" class="headerlink" title="Point Transformer"></a>Point Transformer</h2><p>创造了一个点云处理方式也就是题目的Point transformer，将nlp领域中的transformer引入了点云处理领域<br><img src="/images/pointtransformer.png" alt="alt"></p>
-    
-    <a class="article-more-a" href="/2021/05/14/Point%20Transformer/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">3D vision</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/05/14/Point%20Transformer/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PointNet++" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/05/08/PointNet++/" target="_blank">PointNet++</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/05/08/PointNet++/" class="archive-article-date">
-        <time datetime="2021-05-08T04:56:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-08</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="解读"><a href="#解读" class="headerlink" title="解读:"></a>解读:</h4><p>虽然这篇文章叫PointNet++，但和PointNet相比还是有很大的改进。文章非常核心的一点就是提出了多层次特征提取结构。具体来说就是先在输入点集中选择一些点作为中心点，然后围绕每个中心点选择周围的点组成一个区域，之后每个区域作为PointNet的一个输入样本，得到一组特征，这个特征就是这个区域的特征。之后中心点不变，扩大区域，把上一步得到的那些特征作为输入送入PointNet，以此类推，这个过程就是不断的提取局部特征，然后扩大局部范围，最后得到一组全局的特征，然后进行分类。文章中还提出了多尺度的方法解决样本不均匀的问题，这些方法对于分类的精度没有贡献，但在样本很稀疏的时候的确能让模型更有鲁棒性。</p>
-    
-    <a class="article-more-a" href="/2021/05/08/PointNet++/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">3D vision</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/05/08/PointNet++/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1256,11 +1272,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">搭建blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">搭建blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
