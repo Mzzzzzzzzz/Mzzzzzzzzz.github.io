@@ -217,6 +217,154 @@
             
 
   
+    <article id="post-CAS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/07/03/CAS/" target="_blank">1</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/07/03/CAS/" class="archive-article-date">
+        <time datetime="2021-07-03T06:44:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/07/03/CAS/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-线程池" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/07/03/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" target="_blank">1</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/07/03/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="archive-article-date">
+        <time datetime="2021-07-03T06:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/07/03/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mysql复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -957,191 +1105,9 @@
 
 
   
-    <article id="post-Zookeeper工作原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" target="_blank">Zookeeper工作原理</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="archive-article-date">
-        <time datetime="2021-06-04T12:04:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="1、Zookeeper的角色"><a href="#1、Zookeeper的角色" class="headerlink" title="1、Zookeeper的角色"></a>1、Zookeeper的角色</h2><ul>
-<li>领导者（leader），负责进行投票的发起和决议，更新系统状态</li>
-<li>学习者（learner），包括跟随者（follower）和观察者（observer），follower用于接受客户端请求并想客户端返回结果，在选主过程中参与投票</li>
-<li>Observer可以接受客户端连接，将写请求转发给leader，但observer不参加投票过程，只同步leader的状态，observer的目的是为了扩展系统，提高读取速度</li>
-<li>客户端（client），请求发起方<br><img src="/images/zkp1.png" alt="alt"><br><img src="/images/zkp2.png" alt="alt">
-    
-    <a class="article-more-a" href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/06/04/Zookeeper%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Zookeeper搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/06/01/Zookeeper%E6%90%AD%E5%BB%BA/" target="_blank">Zookeeper搭建</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/06/01/Zookeeper%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-        <time datetime="2021-06-01T11:31:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Review一下，这次单机搭建伪集群</p>
-<h2 id="Zookeeper结构"><a href="#Zookeeper结构" class="headerlink" title="Zookeeper结构"></a>Zookeeper结构</h2><h3 id="数据节点："><a href="#数据节点：" class="headerlink" title="数据节点："></a>数据节点：</h3><p>Zookeeper存储数据是以树形结构存储的，类似linux的目录，最上层是“/”也就是根节点，可以在根节点上创建子节点，在子节点上再创建子节点。在Zookeeper中每个节点被称为一个Znode,每个Znode包含：节点名称、节点值、值的长度、节点创建时间、节点修改时间、版本号、子节点数量等属性，可以创建节点，修改节点，删除节点等操作。<br><img src="/images/zk1.png" alt="alt"><br><img src="/images/zk2.png" alt="alt"></p>
-<h3 id="Watcher-事件监听器"><a href="#Watcher-事件监听器" class="headerlink" title="Watcher(事件监听器)"></a>Watcher(事件监听器)</h3><p>事件监听是Zookeeper中非常重要的一个特性，用来监听节点的操作，当对节点做了操作(例如创建节点、修改节点、删除节点等)就会触发节点上的监听，当监听到节点发生了变化就可以做一些相应的处理操作。该<br>机制是ZooKeeper实现分布式协调服务的重要特性。</p>
-    
-    <a class="article-more-a" href="/2021/06/01/Zookeeper%E6%90%AD%E5%BB%BA/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/06/01/Zookeeper%E6%90%AD%E5%BB%BA/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1272,15 +1238,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">搭建blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">搭建blog</a>
               </li>
              
               <li class="article-tag-list-item">
