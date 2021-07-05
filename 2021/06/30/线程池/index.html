@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Mzzzzzzzzz.github.io">
-  <title>LeetCode-无重复字符的最长子串 | Hexo</title>
+  <title>线程池 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="题目给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1: 123输入: “abcabcbb”输出: 3解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。 示例 2: 123输入: “bbbbb”输出: 1解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。 示例 3: 123输入: “pwwkew”输出: 3解释: 因为无重复字符的最长子串是 “w">
+  <meta name="description" content="线程池使用及优势线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。 它的主要特点为：线程复用，控制最大并发数，管理线程。 优点：1.降低资源消耗。通过重复利用己创建的线程降低线程创建和销毁造成的消耗。2.提高响应速度。当任务到达时，任务可以不需要的等到线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-无重复字符的最长子串">
-<meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/01/22/LeetCode-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/index.html">
+<meta property="og:title" content="线程池">
+<meta property="og:url" content="https://mzzzzzzzzz.github.io/2021/06/30/%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1: 123输入: “abcabcbb”输出: 3解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。 示例 2: 123输入: “bbbbb”输出: 1解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。 示例 3: 123输入: “pwwkew”输出: 3解释: 因为无重复字符的最长子串是 “w">
+<meta property="og:description" content="线程池使用及优势线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。 它的主要特点为：线程复用，控制最大并发数，管理线程。 优点：1.降低资源消耗。通过重复利用己创建的线程降低线程创建和销毁造成的消耗。2.提高响应速度。当任务到达时，任务可以不需要的等到线程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-22T13:32:42.000Z">
-<meta property="article:modified_time" content="2021-06-02T09:16:21.369Z">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/tp1.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/tp2.png">
+<meta property="og:image" content="https://mzzzzzzzzz.github.io/images/tp3.png">
+<meta property="article:published_time" content="2021-06-30T06:32:49.000Z">
+<meta property="article:modified_time" content="2021-07-05T02:36:52.393Z">
 <meta property="article:author" content="Mzsu">
-<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mzzzzzzzzz.github.io/images/tp1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -215,14 +219,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-LeetCode-无重复字符的最长子串" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-线程池" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      LeetCode-无重复字符的最长子串
+      线程池
     </h1>
   
 
@@ -234,8 +238,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2021/01/22/LeetCode-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" class="archive-article-date">
-        <time datetime="2021-01-22T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-22</time>
+<a href="/2021/06/30/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="archive-article-date">
+        <time datetime="2021-06-30T06:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
 
   
@@ -248,7 +252,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">383字</span>
+      <span class="post-count">1.3k字</span>
     </span>
   </span>
 
@@ -257,7 +261,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -268,20 +272,52 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
-<p>示例 1:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: “abcabcbb”</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。</span><br></pre></td></tr></table></figure>
-<p>示例 2:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: “bbbbb”</span><br><span class="line">输出: 1</span><br><span class="line">解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。</span><br></pre></td></tr></table></figure>
-<p>示例 3:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: “pwwkew”</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。</span><br></pre></td></tr></table></figure>
-<p>请注意，你的答案必须是 子串 的长度，“pwke” 是一个子序列，不是子串。</p>
+    <h2 id="线程池使用及优势"><a href="#线程池使用及优势" class="headerlink" title="线程池使用及优势"></a>线程池使用及优势</h2><p>线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。</p>
+<p>它的主要特点为：线程复用，控制最大并发数，管理线程。</p>
+<p>优点：<br>1.降低资源消耗。通过重复利用己创建的线程降低线程创建和销毁造成的消耗。<br>2.提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。<br>3.提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</p>
+<h2 id="线程池3个常用方式"><a href="#线程池3个常用方式" class="headerlink" title="线程池3个常用方式"></a>线程池3个常用方式</h2><p>Java中的线程池是通过Executor框架实现的，该框架中用到了Executor，Executors，ExecutorService，ThreadPoolExecutor这几个类<br><img src="/images/tp1.png" alt="alt"></p>
 <span id="more"></span>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>使用滑动窗口解答, 判断字符是不是重复, 使用字符数组来判断</p>
 <ul>
-<li>设定l,r两个指针, 首先移动指针r直到出现重复字符,这个时候只可能有一个字符重复, 然后再移动字符l,</li>
-<li>如果已经不包含重复字符了, 如果移除的字符是已经出现过的字符, 则表示此时[l…r]之间已经没有重复字符了</li>
-<li>重复上面整个步骤, 完成整改遍历过程即可, 遍历过程中记录r - l + 1的最大值, 具体代码如下:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] freq = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">256</span>];</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; s.length())&#123;</span><br><span class="line">            <span class="keyword">if</span> (r == s.length() - <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (freq[s.charAt(r + <span class="number">1</span>)] == <span class="number">0</span>)&#123;</span><br><span class="line">                freq[s.charAt(r + <span class="number">1</span>)]++;</span><br><span class="line">                r++;</span><br><span class="line">                max = Math.max(max, r - l + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                freq[s.charAt(l)]--;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Executors.newSingleThreadExecutor()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> FinalizableDelegatedExecutorService</span><br><span class="line">        (<span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序执行。<br>newSingleThreadExecutor将corePoolSize和maximumPoolSize都设置为1，它使用的LinkedBlockingQueue。</p>
+</li>
+<li><p>Executors.newFixedThreadPool(int)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                  <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                  <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。<br>newFixedThreadPool创建的线程池corePoolSize和maximumPoolSize值是相等的，它使用的LinkedBlockingQueue。</p>
+</li>
+<li><p>Executors.newCachedThreadPool()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                  <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                                  <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。<br>newCachedThreadPool将corePoolSize设置为0，将maximumPoolSize设置为Integer.MAX_VALUE，使用的SynchronousQueue，也就是说来了任务就创建线程运行，当线程空闲超过60秒，就销毁线程。</p>
+</li>
+</ul>
+<h2 id="线程池7大参数介绍"><a href="#线程池7大参数介绍" class="headerlink" title="线程池7大参数介绍"></a>线程池7大参数介绍</h2><p>1.corePoolSize：线程池中的常驻核心线程数<br>在创建了线程池后，当有请求任务来之后，就会安排池中的线程去执行请求任务，近似理解为今日当值线程。<br>当线程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中。</p>
+<p>2.maximumPoolSize：线程池能够容纳同时执行的最大线程数，此值必须大于等于1</p>
+<p>3.keepAliveTime：多余的空闲线程的存活时间。<br>当前线程池数量超过corePoolSize时，当空闲时间达到keepAliveTime值时，多余空闲线程会被销毁直到只剩下corePoolSize个线程为止</p>
+<p>4.unit：keepAliveTime的单位。</p>
+<p>5.workQueue：任务队列，被提交但尚未被执行的任务。</p>
+<p>6.threadFactory：表示生成线程池中工作线程的线程工厂，用于创建线程一般用默认的即可。</p>
+<p>7.handler：拒绝策略，表示当队列满了并且工作线程大于等于线程池的最大线程数（ maximumPoolSize)。</p>
+<h2 id="线程池底层工作原理"><a href="#线程池底层工作原理" class="headerlink" title="线程池底层工作原理"></a>线程池底层工作原理</h2><p><img src="/images/tp2.png" alt="alt"><br><img src="/images/tp3.png" alt="alt"></p>
+<p>1.在创建了线程池后，等待提交过来的任务请求。</p>
+<p>2.当调用execute()方法添加一个请求任务时，线程池会做如下判断：</p>
+<pre><code>如果正在运行的线程数量小于corePoolSize，那么马上创建线程运行这个任务；
+如果正在运行的线程数量大于或等于corePoolSize，那么将这个任务放入队列；
+如果这时候队列满了且正在运行的线程数量还小于maximumPoolSize，那么还是要创建非核心线程立刻运行这个任务;
+如果队列满了且正在运行的线程数量大于或等于maximumPoolSize，那么线程池会启动饱和拒绝策略来执行。
+</code></pre>
+<p>3.当一个线程完成任务时，它会从队列中取下一个任务来执行。</p>
+<p>4.当一个线程无事可做超过一定的时间（keepAliveTime）时，线程池会判断:</p>
+<pre><code>如果当前运行的线程数大于corePoolSize，那么这个线程就被停掉，所以线程池的所有任务完成后它最终会收缩到corePoolSize的大小。
+</code></pre>
+<h2 id="线程池的4种拒绝策略理论"><a href="#线程池的4种拒绝策略理论" class="headerlink" title="线程池的4种拒绝策略理论"></a>线程池的4种拒绝策略理论</h2><p>等待队列也已经排满了，再也塞不下新任务了同时，线程池中的max线程也达到了，无法继续为新任务服务。</p>
+<p>这时候我们就需要拒绝策略机制合理的处理这个问题。</p>
+<p>JDK拒绝策略：</p>
+<ul>
+<li>AbortPolicy（默认）：直接抛出 RejectedExecutionException异常阻止系统正常运知。</li>
+<li>CallerRunsPolicy：”调用者运行”一种调节机制，该策略既不会抛弃任务，也不会抛出异常，而是将某些任务回退到调用者，从而降低新任务的流量。</li>
+<li>DiscardOldestPolicy：抛弃队列中等待最久的任务，然后把当前任务加入队列中尝试再次提交当前任务。</li>
+<li>DiscardPolicy：直接丢弃任务，不予任何处理也不抛出异常。如果允许任务丢失，这是最好的一种方案。<br>以上内置拒绝策略均实现了RejectedExecutionHandler接口。</li>
 </ul>
 
     
@@ -329,7 +365,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://Mzzzzzzzzz.github.io/2021/01/22/LeetCode-无重复字符的最长子串/" title="LeetCode-无重复字符的最长子串" target="_blank">https://Mzzzzzzzzz.github.io/2021/01/22/LeetCode-无重复字符的最长子串/</a>
+          <a href="https://Mzzzzzzzzz.github.io/2021/06/30/线程池/" title="线程池" target="_blank">https://Mzzzzzzzzz.github.io/2021/06/30/线程池/</a>
         </li>
         
         <li>
@@ -351,7 +387,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -407,7 +443,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://mzzzzzzzzz.github.io/2021/01/22/LeetCode-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://mzzzzzzzzz.github.io/2021/06/30/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -422,18 +458,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/01/23/LeetCode-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/07/03/CAS/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          LeetCode-盛最多水的容器
+          CAS
         
       </div>
     </a>
   
   
-    <a href="/2021/01/21/LeetCode-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LeetCode-两数相加</div>
+    <a href="/2021/06/24/Mysql%E5%A4%8D%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql复制</div>
       <i class="icon-circle-right"></i>
     </a>
   
