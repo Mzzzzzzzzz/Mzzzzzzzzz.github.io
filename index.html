@@ -225,7 +225,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/07/14/Java%E5%8E%9F%E5%AD%90%E7%B1%BB/" target="_blank">1</a>
+	  <a class="article-title" href="/2021/07/09/Java%E5%8E%9F%E5%AD%90%E7%B1%BB/" target="_blank">Java原子类</a>
   
     </h1>
   
@@ -233,8 +233,8 @@
 
   
   
-<a href="/2021/07/14/Java%E5%8E%9F%E5%AD%90%E7%B1%BB/" class="archive-article-date">
-        <time datetime="2021-07-14T04:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
+<a href="/2021/07/09/Java%E5%8E%9F%E5%AD%90%E7%B1%BB/" class="archive-article-date">
+        <time datetime="2021-07-09T04:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-09</time>
 </a>
 
   
@@ -246,6 +246,11 @@
   
   <div class="article-entry" itemprop="articleBody">
     
+    <h2 id="悲观的解决方案（阻塞同步）"><a href="#悲观的解决方案（阻塞同步）" class="headerlink" title="悲观的解决方案（阻塞同步）"></a>悲观的解决方案（阻塞同步）</h2><p>例如，num++看似简单的一个操作，实际上是由1.读取 2.加一 3.写入 三步组成的，这是个复合类的操作（所以我们之前提到过的volatile是无法解决num++的原子性问题的），在并发环境下，如果不做任何同步处理，就会有线程安全问题。最直接的处理方式就是加锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</span><br><span class="line">    num++;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>使用独占锁机制来解决，是一种悲观的并发策略，抱着一副“总有刁民想害朕”的态势，每次操作数据的时候都认为别的线程会参与竞争修改，所以直接加锁。同一刻只能有一个线程持有锁，那其他线程就会阻塞。线程的挂起恢复会带来很大的性能开销，尽管jvm对于非竞争性的锁的获取和释放做了很多优化，但是一旦有多个线程竞争锁，频繁的阻塞唤醒，还是会有很大的性能开销的。所以，使用synchronized或其他重量级锁来处理显然不够合理。</p>
+    
+    <a class="article-more-a" href="/2021/07/09/Java%E5%8E%9F%E5%AD%90%E7%B1%BB/#more">more >></a>
     
     
 
@@ -257,11 +262,22 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/14/Java%E5%8E%9F%E5%AD%90%E7%B1%BB/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/07/09/Java%E5%8E%9F%E5%AD%90%E7%B1%BB/">展开全文 >></a>
     </p>
     
 
@@ -299,7 +315,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/07/14/MVCC%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" target="_blank">1</a>
+	  <a class="article-title" href="/2021/07/07/MVCC%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" target="_blank">MVCC多版本并发控制</a>
   
     </h1>
   
@@ -307,8 +323,8 @@
 
   
   
-<a href="/2021/07/14/MVCC%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" class="archive-article-date">
-        <time datetime="2021-07-14T03:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
+<a href="/2021/07/07/MVCC%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" class="archive-article-date">
+        <time datetime="2021-07-07T05:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-07</time>
 </a>
 
   
@@ -320,6 +336,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
+    <h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p>MVCC，全称Multi-Version Concurrency Control，即多版本并发控制。MVCC是一种并发控制的方法，一般在数据库管理系统中，实现对数据库的并发访问，在编程语言中实现事务内存。<br>MVCC在MySQL InnoDB中的实现主要是为了提高数据库并发性能，用更好的方式去处理读-写冲突，做到即使有读写冲突时，也能做到不加锁，非阻塞并发读</p>
+<h2 id="当前读和快照读"><a href="#当前读和快照读" class="headerlink" title="当前读和快照读"></a>当前读和快照读</h2><h4 id="当前读"><a href="#当前读" class="headerlink" title="当前读"></a>当前读</h4><p>像select lock in share mode(共享锁), select for update ; update, insert ,delete(排他锁)这些操作都是一种当前读，为什么叫当前读？就是它读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。</p>
+<h4 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h4><p>像不加锁的select操作就是快照读，即不加锁的非阻塞读；快照读的前提是隔离级别不是串行级别，串行级别下的快照读会退化成当前读；之所以出现快照读的情况，是基于提高并发性能的考虑，快照读的实现是基于多版本并发控制，即MVCC,可以认为MVCC是行锁的一个变种，但它在很多情况下，避免了加锁操作，降低了开销；既然是基于多版本，即快照读可能读到的并不一定是数据的最新版本，而有可能是之前的历史版本</p>
+<p>说白了MVCC就是为了实现读-写冲突不加锁，而这个读指的就是快照读, 而非当前读，当前读实际上是一种加锁的操作，是悲观锁的实现</p>
+    
+    <a class="article-more-a" href="/2021/07/07/MVCC%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/#more">more >></a>
     
     
 
@@ -331,11 +353,22 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/14/MVCC%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/07/07/MVCC%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/">展开全文 >></a>
     </p>
     
 
@@ -373,7 +406,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/07/14/%E5%BC%BA%E8%99%9A%E8%BD%AF%E5%BC%B1/" target="_blank">1</a>
+	  <a class="article-title" href="/2021/07/04/%E5%BC%BA%E8%99%9A%E8%BD%AF%E5%BC%B1/" target="_blank">强引用，软引用，弱引用、虚引用</a>
   
     </h1>
   
@@ -381,8 +414,8 @@
 
   
   
-<a href="/2021/07/14/%E5%BC%BA%E8%99%9A%E8%BD%AF%E5%BC%B1/" class="archive-article-date">
-        <time datetime="2021-07-14T03:38:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
+<a href="/2021/07/04/%E5%BC%BA%E8%99%9A%E8%BD%AF%E5%BC%B1/" class="archive-article-date">
+        <time datetime="2021-07-04T03:38:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-04</time>
 </a>
 
   
@@ -394,6 +427,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
+    <h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><p>众所周知，Java中是JVM负责内存的分配和回收，这是它的优点（使用方便，程序不用再像使用c那样操心内存），但同时也是它的缺点（不够灵活）。为了解决内存操作不灵活这个问题，可以采用软引用等方法。</p>
+<p>在JDK1.2以前的版本中，当一个对象不被任何变量引用，那么程序就无法再使用这个对象。也就是说，只有对象处于可触及状态，程序才能使用它。这 就像在日常生活中，从商店购买了某样物品后，如果有用，就一直保留它，否则就把它扔到垃圾箱，由清洁工人收走。一般说来，如果物品已经被扔到垃圾箱，想再 把它捡回来使用就不可能了。</p>
+<p>但有时候情况并不这么简单，可能会遇到类似鸡肋一样的物品，食之无味，弃之可惜。这种物品现在已经无用了，保留它会占空间，但是立刻扔掉它也不划算，因 为也许将来还会派用场。对于这样的可有可无的物品，一种折衷的处理办法是：如果家里空间足够，就先把它保留在家里，如果家里空间不够，即使把家里所有的垃 圾清除，还是无法容纳那些必不可少的生活用品，那么再扔掉这些可有可无的物品。</p>
+<p>从JDK1.2版本开始，把对象的引用分为四种级别，从而使程序能更加灵活的控制对象的生命周期。这四种级别由高到低依次为：强引用、软引用、弱引用和虚引用。</p>
+    
+    <a class="article-more-a" href="/2021/07/04/%E5%BC%BA%E8%99%9A%E8%BD%AF%E5%BC%B1/#more">more >></a>
     
     
 
@@ -405,11 +444,22 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/14/%E5%BC%BA%E8%99%9A%E8%BD%AF%E5%BC%B1/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/07/04/%E5%BC%BA%E8%99%9A%E8%BD%AF%E5%BC%B1/">展开全文 >></a>
     </p>
     
 
